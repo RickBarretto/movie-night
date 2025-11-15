@@ -1,0 +1,6 @@
+[submodule "backend"]
+	path = backend
+	url = https://github.com/codeminer42-imersao42-2025/backend-boilerplate
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/codeminer42-imersao42-2025/frontend-boilerplate
