@@ -1,24 +1,26 @@
-
+import { Button } from '../components/Button';
 
 export function Welcome() {
   return (
-    <main>
+    <div className="flex flex-col items-center justify-start gap-4">
       <Header />
-      <div>
-        <button>Create Room</button>
-        <button>Join Room</button>
+      <div className="flex flex-col items-center gap-2">
+        <Button>Creaye Room</Button>
+        <Button>Join Room</Button>
       </div>
       <Explanation />
       <Footer />
-    </main>
+    </div>
   );
 }
 
 function Header() {
   return (
-    <header>
-      <h1>🎬 Movie Night</h1>
-      <p>
+    <header className="flex flex-col gap-2">
+      <h1 className="text-3xl font-bold">
+        🎬 Movie Night
+      </h1>
+      <p className="text-lg">
         Create a room, invite friends, vote on movies,
         and let fate decide!.
       </p>
@@ -28,8 +30,10 @@ function Header() {
 
 function Explanation() {
   return (
-    <article>
-      <h2>How it Works</h2>
+    <article className="prose">
+      <h2 className="text-2xl font-bold">
+        How it Works
+      </h2>
       <ul>
         <li>Create or join a room.</li>
         <li>Everyone adds movie suggestions.</li>
@@ -42,6 +46,6 @@ function Explanation() {
 }
 
 function Footer() {
-    return <p>© 2025 RickBarretto</p>;
+    return <p className="prose text-sm">© 2025 RickBarretto</p>;
 }
 
