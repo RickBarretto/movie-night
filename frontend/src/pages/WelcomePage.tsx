@@ -1,6 +1,6 @@
 import { Button } from '../components/Button';
 
-export function Welcome() {
+export function WelcomePage() {
   return (
     <div className="max-w-xl h-screen py-10 mx-auto
       flex flex-col justify-start gap-4
