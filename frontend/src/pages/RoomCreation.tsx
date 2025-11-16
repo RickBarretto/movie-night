@@ -1,6 +1,6 @@
 
 
-export default function RoomCreation() {
+export function RoomCreation() {
   return (
     <main>
       <BackButton />

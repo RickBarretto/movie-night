@@ -1,6 +1,6 @@
 
 
-export default function HostRoom() {
+export function Room() {
   return (
     <main>
     </main>

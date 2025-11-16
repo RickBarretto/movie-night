@@ -1,6 +1,6 @@
 
 
-export default function Welcome() {
+export function Welcome() {
   return (
     <main>
       <Header />
