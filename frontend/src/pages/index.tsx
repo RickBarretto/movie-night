@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Button } from '../components/Button';
 
 export default function Page() {
@@ -15,8 +16,8 @@ export default function Page() {
         </p>
       </header>
       <div className="mx-auto flex items-center gap-2">
-        <Button>Create Room</Button>
-        <Button>Join Room</Button>
+        <Link href="/create"><Button>Create Room</Button></Link>
+        <Link href="/join"><Button>Join Room</Button></Link>
       </div>
       <article className="prose w-fit">
         <h3 className="font-bold">How it Works</h3>
