@@ -1,10 +1,9 @@
 import Link from 'next/link';
 
 import { Button } from '@/components/Button';
-import { Card } from '@/components/Card';
 import { Callout } from '@/components/Callout';
 import { TextInput } from '@/components/Input';
-import { Form } from '@/components/Form';
+import { CardForm } from '@/components/Form';
 
 export default function CreatePage() {
   return (
@@ -16,20 +15,18 @@ export default function CreatePage() {
           &larr; Back
         </button>
       </Link>
-      <Card className="flex flex-col gap-4">
-        <Form title="Create a Room">
-          <TextInput id="username" placeholder="Your name">
-            Your name
-          </TextInput>
-          <Button type="submit">Create Room</Button>
-          <Callout hint="Note">
-            After creating the room, you&apos;ll receive a unique room code
-            to share with your friends.
-            As the host, you&apos;ll have control to finish the voting
-            and draw the winning movie.
-          </Callout>
-        </Form>
-      </Card>
+      <CardForm title="Create a Room">
+        <TextInput id="username" placeholder="Your name">
+          Your name
+        </TextInput>
+        <Button type="submit">Create Room</Button>
+        <Callout hint="Note">
+          After creating the room, you&apos;ll receive a unique room code
+          to share with your friends.
+          As the host, you&apos;ll have control to finish the voting
+          and draw the winning movie.
+        </Callout>
+      </CardForm>
     </div>
   );
 }
