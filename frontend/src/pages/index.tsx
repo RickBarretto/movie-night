@@ -5,10 +5,9 @@ import { Button } from '@/components/Button';
 export default function Page() {
   return (
     <div className="max-w-xl h-screen py-10 mx-auto
-      flex flex-col justify-start gap-4
-    "
+      flex flex-col justify-start gap-4"
     >
-      <header className="prose">
+      <header className="prose prose-invert">
         <h1 className="text-3xl text-center font-bold">🎬 Movie Night</h1>
         <p className="text-lg">
           Create a room, invite friends, 
@@ -20,7 +19,7 @@ export default function Page() {
         <Link href="/create"><Button>Create Room</Button></Link>
         <Link href="/join"><Button>Join Room</Button></Link>
       </div>
-      <article className="prose w-fit">
+      <article className="prose prose-invert w-fit">
         <h3 className="font-bold">How it Works</h3>
         <ol>
           <li>Create or join a room.</li>
@@ -31,7 +30,7 @@ export default function Page() {
         </ol>
       </article>
       <span className="my-auto"></span>
-      <footer className="text-center text-sm">
+      <footer className="prose prose-invert text-center text-sm">
         © 2025 RickBarretto
       </footer>
     </div>

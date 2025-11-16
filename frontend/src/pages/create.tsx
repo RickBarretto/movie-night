@@ -10,7 +10,9 @@ export default function CreatePage() {
       flex flex-col justify-start gap-4"
     >
       <Link href="/">
-        <button className="bg-transparent">&lt; Back</button>
+        <button className="bg-transparent text-white">
+          &larr; Back
+        </button>
       </Link>
       <Card className="flex flex-col gap-4">
         <form className="prose flex flex-col gap-4">
