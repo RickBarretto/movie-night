@@ -2,8 +2,7 @@ import { Button } from '../components/Button';
 
 export function Welcome() {
   return (
-    <div className="
-      max-w-xl my-10 mx-auto
+    <div className="max-w-xl h-screen py-10 mx-auto
       flex flex-col justify-start gap-4
     "
     >
@@ -29,7 +28,10 @@ export function Welcome() {
           <li>Enjoy the movie!</li>
         </ol>
       </article>
-      <p className="text-center text-sm">© 2025 RickBarretto</p>
+      <span className="my-auto"></span>
+      <footer className="text-center text-sm">
+        © 2025 RickBarretto
+      </footer>
     </div>
   );
 }
