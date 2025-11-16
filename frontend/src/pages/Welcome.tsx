@@ -15,7 +15,7 @@ export function Welcome() {
         </p>
       </header>
       <div className="mx-auto flex items-center gap-2">
-        <Button>Creaye Room</Button>
+        <Button>Create Room</Button>
         <Button>Join Room</Button>
       </div>
       <article className="prose w-fit">
