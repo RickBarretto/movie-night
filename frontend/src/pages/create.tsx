@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
+import { Callout } from '@/components/Callout';
 
 export default function CreatePage() {
   return (
@@ -19,14 +20,12 @@ export default function CreatePage() {
             <input className="border-b-1 border-bottom border-black" type="text" id="username" name="username"/>
           </div>
           <Button type="submit">Create Room</Button>
-          <p>
-            <strong>Note:</strong>
-            &nbsp;
+          <Callout hint="Note">
             After creating the room, you&apos;ll receive a unique room code
             to share with your friends.
             As the host, you&apos;ll have control to finish the voting
             and draw the winning movie.
-          </p>
+          </Callout>
         </form>
       </Card>
     </div>
