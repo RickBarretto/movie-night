@@ -10,7 +10,7 @@ export default function CreatePage() {
       flex flex-col justify-start gap-4"
     >
       <Link href="/">
-        <button className="bg-transparent text-white">
+        <button className="bg-transparent text-white cursor-pointer">
           &larr; Back
         </button>
       </Link>
