@@ -4,6 +4,7 @@ import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { Callout } from '@/components/Callout';
 import { TextInput } from '@/components/Input';
+import { Form } from '@/components/Form';
 
 export default function CreatePage() {
   return (
@@ -16,8 +17,7 @@ export default function CreatePage() {
         </button>
       </Link>
       <Card className="flex flex-col gap-4">
-        <form className="prose flex flex-col gap-4">
-          <h2 className="text-purple-600">Create a Room</h2>
+        <Form title="Create a Room">
           <TextInput id="username" placeholder="Your name">
             Your name
           </TextInput>
@@ -28,7 +28,7 @@ export default function CreatePage() {
             As the host, you&apos;ll have control to finish the voting
             and draw the winning movie.
           </Callout>
-        </form>
+        </Form>
       </Card>
     </div>
   );

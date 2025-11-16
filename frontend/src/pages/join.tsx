@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Card } from '@/components/Card';
 import { Button } from '@/components/Button';
 import { TextInput } from '@/components/Input';
+import { Form } from '@/components/Form';
 
 export default function JoinPage() {
   return (
@@ -17,8 +18,7 @@ export default function JoinPage() {
         </button>
       </Link>
       <Card className="flex flex-col gap-4">
-        <form className="prose flex flex-col gap-4">
-          <h2 className="text-purple-600">Join a Room</h2>
+        <Form title="Join a Room">
           <TextInput id="room-code" placeholder="ENTER YOUR ROOM CODE">
             Room Code
           </TextInput>
@@ -26,7 +26,7 @@ export default function JoinPage() {
             Your name
           </TextInput>
           <Button type="submit">Join Room</Button>
-        </form>
+        </Form>
       </Card>
     </div>
   );
