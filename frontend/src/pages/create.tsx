@@ -1,0 +1,34 @@
+import Link from 'next/link';
+
+import { Button } from '../components/Button';
+import { Card } from '../components/Card';
+
+export default function CreatePage() {
+  return (
+    <div className="max-w-xl h-screen py-10 mx-auto
+      flex flex-col justify-start gap-4"
+    >
+      <Link href="/">
+        <button className="bg-transparent">&lt; Back</button>
+      </Link>
+      <Card className="flex flex-col gap-4">
+        <form className="prose flex flex-col gap-4">
+          <h2 className="text-purple-600">Create a Room</h2>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="username">Your Name</label>
+            <input className="border-b-1 border-bottom border-black" type="text" id="username" name="username"/>
+          </div>
+          <Button type="submit">Create Room</Button>
+          <p>
+            <strong>Note:</strong>
+            &nbsp;
+            After creating the room, you&apos;ll receive a unique room code
+            to share with your friends.
+            As the host, you&apos;ll have control to finish the voting
+            and draw the winning movie.
+          </p>
+        </form>
+      </Card>
+    </div>
+  );
+}
