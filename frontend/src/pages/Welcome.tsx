@@ -2,30 +2,34 @@ import { Button } from '../components/Button';
 
 export function Welcome() {
   return (
-    <div className="flex flex-col items-center justify-start gap-4">
-      <header className="flex flex-col gap-2">
-        <h1 className="text-3xl font-bold">🎬 Movie Night</h1>
+    <div className="
+      max-w-xl my-10 mx-auto
+      flex flex-col justify-start gap-4
+    "
+    >
+      <header className="prose">
+        <h1 className="text-3xl text-center font-bold">🎬 Movie Night</h1>
         <p className="text-lg">
           Create a room, invite friends, 
           vote on movies,
           and let fate decide!.
         </p>
       </header>
-      <div className="flex flex-col items-center gap-2">
+      <div className="mx-auto flex items-center gap-2">
         <Button>Creaye Room</Button>
         <Button>Join Room</Button>
       </div>
-      <article className="prose">
-        <h2 className="text-2xl font-bold">How it Works</h2>
-        <ul>
+      <article className="prose w-fit">
+        <h3 className="font-bold">How it Works</h3>
+        <ol>
           <li>Create or join a room.</li>
           <li>Everyone adds movie suggestions.</li>
           <li>Vote with upvotes &amp; downvotes.</li>
           <li>Host locks and draws a random winner.</li>
           <li>Enjoy the movie!</li>
-        </ul>
+        </ol>
       </article>
-      <p className="prose text-sm">© 2025 RickBarretto</p>
+      <p className="text-center text-sm">© 2025 RickBarretto</p>
     </div>
   );
 }
