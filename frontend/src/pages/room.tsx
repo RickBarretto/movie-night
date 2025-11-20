@@ -4,7 +4,7 @@ import { useHost, useUsername } from "@/hooks/useUser"
 import { useRoom } from "@/hooks/useRoom"
 
 import { Card } from "@/components/Card"
-import { Button, FakeButton } from "@/components/Button"
+import { Button } from "@/components/ui/button"
 
 
 export default function RoomPage() {
@@ -58,7 +58,7 @@ function UserInfo({ user }: { user: User }) {
   return (
     <div className="flex justify-start align-center my-2 gap-4">
       <span className="my-auto">👨 {user.name}</span>
-      <FakeButton>{user.role}</FakeButton>
+      <Button>{user.role}</Button>
     </div>
   )
 }
@@ -69,12 +69,15 @@ function ShareSection({ room }: { room: Room }) {
       <p>Share this Code:</p>
       <div className="flex justify-between align-center">
         <div className="flex justify-center align-center my-auto gap-4">
-          <Button onClick={() => navigator.clipboard.writeText(room.code)}>
+          <Button
+            className="cursor-pointer"
+            onClick={() => navigator.clipboard.writeText(room.code)}
+          >
             Copy Code
           </Button>
-          <FakeButton>{ room.code }</FakeButton>
+          <Button>{ room.code }</Button>
         </div>
-        <FakeButton>🔐 { room.status }</FakeButton>
+        <Button>🔐 { room.status }</Button>
       </div>
     </div>
   )
