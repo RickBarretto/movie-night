@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/ui/button';
 import { Callout } from '@/components/Callout';
 import { TextInput } from '@/components/Input';
 import { CardForm } from '@/components/Form';
@@ -11,9 +11,9 @@ export default function CreatePage() {
       flex flex-col justify-start gap-4"
     >
       <Link href="/">
-        <button className="bg-transparent text-white cursor-pointer">
-          &larr; Back
-        </button>
+        <Button className="bg-transparent text-white cursor-pointer">
+          &larr; &nbsp; Back
+        </Button>
       </Link>
       <CardForm title="Create a Room">
         <TextInput id="username" placeholder="Your name">
