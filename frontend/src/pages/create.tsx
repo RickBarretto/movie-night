@@ -1,32 +1,43 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import { Button } from '@/components/ui/button';
-import { Callout } from '@/components/Callout';
-import { TextInput } from '@/components/Input';
-import { CardForm } from '@/components/Form';
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
 
 export default function CreatePage() {
   return (
-    <div className="max-w-xl h-screen py-10 mx-auto
-      flex flex-col justify-start gap-4"
-    >
-      <Link href="/">
-        <Button className="bg-transparent text-white cursor-pointer">
-          &larr; &nbsp; Back
-        </Button>
-      </Link>
-      <CardForm title="Create a Room">
-        <TextInput id="username" placeholder="Your name">
-          Your name
-        </TextInput>
-        <Button type="submit">Create Room</Button>
-        <Callout hint="Note">
-          After creating the room, you&apos;ll receive a unique room code
-          to share with your friends.
-          As the host, you&apos;ll have control to finish the voting
-          and draw the winning movie.
-        </Callout>
-      </CardForm>
-    </div>
+    <Card className="w-full max-w-xl mx-auto my-8">
+      <CardHeader>
+        <CardTitle>Create a Room</CardTitle>
+        <CardAction>
+          <Link className="cursor-pointer" href="/">
+            <Button className="bcursor-pointer">&larr; &nbsp; Back</Button>
+          </Link>
+        </CardAction>
+      </CardHeader>
+      <CardContent>
+        <form className="flex flex-col gap-2">
+          <input name="username" type="text" placeholder="Your Name" />
+          <Button name="/create" type="submit" className="cursor-pointer">
+            Create Room
+          </Button>
+        </form>
+      </CardContent>
+      <CardFooter className="flex-col gap-2">
+        <CardDescription>
+          After creating the room, you&apos;ll receive a unique room code to
+          share with your friends. As the host, you&apos;ll have control to
+          finish the voting and draw the winning movie.
+        </CardDescription>
+      </CardFooter>
+    </Card>
   );
 }
