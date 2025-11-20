@@ -32,6 +32,10 @@ import {
 } from "@/components/ui/command";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
 
 export default function RoomPage() {
   const { user, room } = useSession();
@@ -94,9 +98,30 @@ export default function RoomPage() {
             <LucideList /> Suggestions
           </CardTitle>
           <CardAction>
-            <Button className="cursor-pointer">
-              <LucidePlus/> Suggest New
-            </Button>
+            <Dialog>
+              <form>
+                <DialogTrigger asChild>
+                  <Button><LucidePlus/> Suggest New</Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Suggest a Movie</DialogTitle>
+                    <DialogDescription>
+                      Enter the title of the movie you&apos;d like to suggest.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="grid grid-cols-4 gap-4 py-4 [&>input]:col-span-3">
+                    <Label htmlFor="title">Title</Label>
+                    <Input id="title" placeholder="John Wick" required />
+                    <Label htmlFor="year">Year (Optional)</Label>
+                    <Input id="year" placeholder="2014" type="number" />
+                  </div>
+                  <DialogFooter>
+                    <Button type="submit">Suggest</Button>
+                  </DialogFooter>
+                </DialogContent>
+              </form>
+            </Dialog>
           </CardAction>
         </CardHeader>
         <CardContent className="flex flex-col gap-2">
