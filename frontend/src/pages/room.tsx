@@ -3,19 +3,55 @@ import React from "react"
 import { useHost, useUsername } from "@/hooks/useUser"
 import { useRoom } from "@/hooks/useRoom"
 
-import { Card } from "@/components/Card"
 import { Button } from "@/components/ui/button"
+import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { LucideContact, LucideFilm, LucideLaptopMinimal, LucideList } from "lucide-react"
+import { CopyButton } from "@/components/ui/shadcn-io/copy-button"
 
 
 export default function RoomPage() {
   const { user, room } = useSession()
 
   return (
-    <div className="flex flex-col flex-center w-screen h-screen p-16">
-      <Card className="max-w-md">
-        <h2>🎬 Movie Night Room</h2>
-        <UserInfo user={user}/>
-        <ShareSection room={room}/>
+    <div className="flex flex-col flex-center gap-4 max-w-4xl mx-auto p-16">
+      <Card>
+        <CardHeader>
+          <CardTitle className="inline-flex items-center gap-2">
+            <LucideFilm/> 
+            Night Movie Room
+          </CardTitle>
+          <CardAction className="flex align-middle gap-4">
+            <Button variant="secondary">
+              { room.status.toUpperCase() }
+            </Button>
+            <div className="inline-flex items-center gap-2 font-mono text-sm">
+              <span>{ room.code }</span>
+              <CopyButton content={room.code}/>
+            </div>
+          </CardAction>
+        </CardHeader>
+        <CardContent className="flex gap-2">
+          <Button><LucideContact/> { user.name }</Button>
+          <Button>{ user.role.toUpperCase() }</Button>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="inline-flex items-center gap-2">
+            <LucideLaptopMinimal/> 
+            Host Controls
+          </CardTitle>
+        </CardHeader>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="inline-flex items-center gap-2">
+            <LucideList/> 
+            Movie List
+          </CardTitle>
+        </CardHeader>
       </Card>
     </div>
   )
@@ -50,35 +86,4 @@ function useSession(): Session {
       status: 'open'
     }
   }
-}
-
-// Internal Components
- 
-function UserInfo({ user }: { user: User }) {
-  return (
-    <div className="flex justify-start align-center my-2 gap-4">
-      <span className="my-auto">👨 {user.name}</span>
-      <Button>{user.role}</Button>
-    </div>
-  )
-}
-
-function ShareSection({ room }: { room: Room }) {
-  return (
-    <div className="flex flex-col gap-2">
-      <p>Share this Code:</p>
-      <div className="flex justify-between align-center">
-        <div className="flex justify-center align-center my-auto gap-4">
-          <Button
-            className="cursor-pointer"
-            onClick={() => navigator.clipboard.writeText(room.code)}
-          >
-            Copy Code
-          </Button>
-          <Button>{ room.code }</Button>
-        </div>
-        <Button>🔐 { room.status }</Button>
-      </div>
-    </div>
-  )
 }
