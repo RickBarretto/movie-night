@@ -12,3 +12,16 @@ export function Button({ ...props }) {
     </button>
   );
 }
+
+export function FakeButton({ ...props }) {
+  return (
+    <button {...props} className="
+      bg-purple-300 
+      text-purple-800 font-bold 
+      py-2 px-4 rounded
+    "
+    >
+      {props.children}
+    </button>
+  );
+}
