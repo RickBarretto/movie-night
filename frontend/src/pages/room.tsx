@@ -8,6 +8,7 @@ import {
   Card,
   CardAction,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -21,6 +22,8 @@ import {
   LucideLockKeyhole,
   LucideLockKeyholeOpen,
   LucidePlus,
+  LucideUserRoundCheck,
+  LucideUserRoundPlus,
 } from "lucide-react";
 import { CopyButton } from "@/components/ui/shadcn-io/copy-button";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
@@ -125,6 +128,7 @@ export default function RoomPage() {
           </CardAction>
         </CardHeader>
         <CardContent className="flex flex-col gap-2">
+          <MovieCard title="John Wick" year={2014} by="Jane Doe" />
           <Skeleton className="h-16 w-full" />
           <Skeleton className="h-16 w-full" />
           <Skeleton className="h-16 w-full" />
@@ -147,6 +151,23 @@ export default function RoomPage() {
     </div>
   );
 }
+
+// Internal Components
+
+const MovieCard = ({ title, year, by }) => {
+  return (
+    <Card className="flex flex-col gap-2">
+      <CardHeader>
+        <CardTitle>{ title } ({ year })</CardTitle>
+        <CardDescription className="flex items-center">
+          <LucideUserRoundCheck className="mr-1 h-4 w-4" />
+          <span>{ by }</span>
+        </CardDescription>
+      </CardHeader>
+    </Card>
+  );
+}
+
 
 // Internal Hooks
 
