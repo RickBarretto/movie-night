@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/ui/button';
 
 export default function Page() {
   return (
@@ -16,8 +16,8 @@ export default function Page() {
         </p>
       </header>
       <div className="mx-auto flex items-center gap-2">
-        <Link href="/create"><Button>Create Room</Button></Link>
-        <Link href="/join"><Button>Join Room</Button></Link>
+        <Link href="/create"><Button className='cursor-pointer'>Create Room</Button></Link>
+        <Link href="/join"><Button className='cursor-pointer'>Join Room</Button></Link>
       </div>
       <article className="prose prose-invert w-fit">
         <h3 className="font-bold">How it Works</h3>
