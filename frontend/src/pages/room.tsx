@@ -16,7 +16,10 @@ import {
   LucideContact,
   LucideFilm,
   LucideFlag,
+  LucideHash,
   LucideList,
+  LucideLockKeyhole,
+  LucideLockKeyholeOpen,
 } from "lucide-react";
 import { CopyButton } from "@/components/ui/shadcn-io/copy-button";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
@@ -26,6 +29,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { Badge } from "@/components/ui/badge";
 
 export default function RoomPage() {
   const { user, room } = useSession();
@@ -51,7 +55,12 @@ export default function RoomPage() {
             Night Movie Room
           </CardTitle>
           <CardAction className="flex align-middle gap-4">
-            <Button variant="secondary">{room.status.toUpperCase()}</Button>
+            <Badge>
+              {
+               (room.status == "open")? <LucideLockKeyholeOpen/> : <LucideLockKeyhole/>
+              } 
+              {room.status.toUpperCase()}
+            </Badge>
             <div className="inline-flex items-center gap-2 font-mono text-sm">
               <span>{room.code}</span>
               <CopyButton content={room.code} />
@@ -62,7 +71,7 @@ export default function RoomPage() {
           <Button>
             <LucideContact /> {user.name}
           </Button>
-          <Button>{user.role.toUpperCase()}</Button>
+          <Badge variant="outline">{user.role.toUpperCase()}</Badge>
         </CardContent>
         {user.role === "host" && (
           <CardFooter>
@@ -128,7 +137,7 @@ function useSession(): Session {
     },
     room: {
       code: "ABC123",
-      status: "open",
+      status: "closed",
     },
   };
 }
