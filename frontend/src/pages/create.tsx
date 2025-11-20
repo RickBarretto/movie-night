@@ -26,7 +26,7 @@ export default function CreatePage() {
       <CardContent>
         <form className="flex flex-col gap-2">
           <input name="username" type="text" placeholder="Your Name" />
-          <Button name="/create" type="submit" className="cursor-pointer">
+          <Button name="create" type="submit" className="cursor-pointer">
             Create Room
           </Button>
         </form>
