@@ -19,7 +19,7 @@ export default function CreatePage() {
         <CardTitle>Create a Room</CardTitle>
         <CardAction>
           <Link className="cursor-pointer" href="/">
-            <Button className="bcursor-pointer">&larr; &nbsp; Back</Button>
+            <Button className="cursor-pointer">&larr; &nbsp; Back</Button>
           </Link>
         </CardAction>
       </CardHeader>
