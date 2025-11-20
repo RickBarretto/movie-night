@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Button } from '@/components/Button';
+import { Button } from '@/components/ui/button';
 import { TextInput } from '@/components/Input';
 import { CardForm } from '@/components/Form';
 
@@ -10,11 +10,9 @@ export default function JoinPage() {
       flex flex-col justify-start gap-4"
     >
       <Link href="/">
-        <button className="bg-transparent text-white
-          cursor-pointer"
-        >
-          &larr; Back
-        </button>
+        <Button className="bg-transparent text-white cursor-pointer">
+          &larr; &nbsp; Back
+        </Button>
       </Link>
       <CardForm title="Join a Room">
         <TextInput id="room-code" placeholder="ENTER YOUR ROOM CODE">
