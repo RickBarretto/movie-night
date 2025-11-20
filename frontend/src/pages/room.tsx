@@ -137,7 +137,7 @@ function useSession(): Session {
     },
     room: {
       code: "ABC123",
-      status: "closed",
+      status: "open",
     },
   };
 }
