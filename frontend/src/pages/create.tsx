@@ -10,6 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 
 export default function CreatePage() {
@@ -25,7 +27,8 @@ export default function CreatePage() {
       </CardHeader>
       <CardContent>
         <form className="flex flex-col gap-2">
-          <input name="username" type="text" placeholder="Your Name" />
+          <Label htmlFor="username">Your Name</Label>
+          <Input name="username" type="text" placeholder="John Doe" />
           <Button name="create" type="submit" className="cursor-pointer">
             Create Room
           </Button>
