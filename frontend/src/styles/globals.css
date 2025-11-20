@@ -79,14 +79,6 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-body {
-  background: linear-gradient(
-    135deg, purple, black  
-  );
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
