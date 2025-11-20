@@ -1,37 +1,29 @@
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 
 export default function Page() {
   return (
-    <Card className="w-full max-w-xl mx-auto my-8">
-      <CardHeader>
-        <CardTitle className="text-xl">🎬 Movie Night</CardTitle>
-        <CardDescription>
+    <div className="flex flex-col w-full max-w-xl h-screen mx-auto py-16">
+      <header className="flex flex-col gap-2">
+        <Title>Movie Night</Title>
+        <Description>
           Create a room, invite friends, vote on movies, and let fate decide!.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <article className="w-fit">
-          <h3 className="font-bold">How it Works</h3>
-          <ol className="list-decimal pl-6">
+        </Description>
+      </header>
+    
+      <main className="flex flex-col gap-4 place-items-center grow mt-8">
+        <article className="w-xl">
+          <Subheader>How it Works</Subheader>
+          <List>
             <li>Create or join a room.</li>
             <li>Everyone adds movie suggestions.</li>
             <li>Vote with upvotes &amp; downvotes.</li>
             <li>Host locks and draws a random winner.</li>
             <li>Enjoy the movie!</li>
-          </ol>
+          </List>
         </article>
-      </CardContent>
-      <CardFooter className="flex-col gap-5">
+    
         <div className="flex gap-2">
           <Link href="/create">
             <Button className="cursor-pointer">Create Room</Button>
@@ -40,8 +32,55 @@ export default function Page() {
             <Button className="cursor-pointer">Join Room</Button>
           </Link>
         </div>
-        <span>© 2025 RickBarretto</span>
-      </CardFooter>
-    </Card>
+      </main>
+    
+      <footer className="flex-col gap-5 mx-auto">
+        <Muted>© 2025 RickBarretto</Muted>
+      </footer>
+    </div>
   );
+}
+
+
+const Title = ({children}) => {
+  return (
+    <h1 className="scroll-m-20 
+      text-center text-4xl font-extrabold tracking-tight text-balance"
+    >
+      { children }
+    </h1>
+  )
+}
+
+const Subheader = ({children}) => {
+  return (
+    <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight"
+    >
+      { children }
+    </h3>
+  )
+}
+
+const Description = ({children}) => {
+  return (
+    <p className="text-muted-foreground text-xl">
+      { children }
+    </p>
+  )
+}
+
+const List = ({children}) => {
+  return (
+    <ul className="my-6 ml-6 list-decimal [&>li]:mt-2">
+      {children}
+    </ul>
+  )
+}
+
+const Muted = ({children}) => {
+  return (
+    <p className="text-muted-foreground text-sm">
+      { children }
+    </p>
+  )
 }
