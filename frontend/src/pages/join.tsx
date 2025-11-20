@@ -10,6 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export default function JoinPage() {
   return (
@@ -24,8 +26,10 @@ export default function JoinPage() {
       </CardHeader>
       <CardContent>
         <form className="flex flex-col gap-2">
-          <input name="roomCode" type="text" placeholder="Room Code" />
-          <input name="username" type="text" placeholder="Your Name" />
+          <Label htmlFor="roomCode">Room Code</Label>
+          <Input name="roomCode" type="text" placeholder="CODE123" />
+          <Label htmlFor="username">Your Name</Label>
+          <Input name="username" type="text" placeholder="Jane Doe" />
           <Button name="join" type="submit" className="cursor-pointer">
             Join Room
           </Button>
