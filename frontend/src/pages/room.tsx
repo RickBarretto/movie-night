@@ -20,6 +20,7 @@ import {
   LucideList,
   LucideLockKeyhole,
   LucideLockKeyholeOpen,
+  LucidePlus,
 } from "lucide-react";
 import { CopyButton } from "@/components/ui/shadcn-io/copy-button";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
@@ -30,6 +31,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function RoomPage() {
   const { user, room } = useSession();
@@ -91,7 +93,17 @@ export default function RoomPage() {
           <CardTitle className="inline-flex items-center gap-2">
             <LucideList /> Suggestions
           </CardTitle>
+          <CardAction>
+            <Button className="cursor-pointer">
+              <LucidePlus/> Suggest New
+            </Button>
+          </CardAction>
         </CardHeader>
+        <CardContent className="flex flex-col gap-2">
+          <Skeleton className="h-16 w-full" />
+          <Skeleton className="h-16 w-full" />
+          <Skeleton className="h-16 w-full" />
+        </CardContent>
       </Card>
 
       <CommandDialog
