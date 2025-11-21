@@ -12,19 +12,18 @@ import { Link } from "lucide-react";
 
 export default function Page() {
   const baseURL = "http://localhost:3000"
-
-  const testAPI = `${baseURL}/rooms`
+  const api = `${baseURL}/rooms`
 
   const router = useRouter();
   const [username, setUsername] = useLocalStorage("username");
   const [ownerKey, setOwnerKey] = useLocalStorage("ownerKey");
   const [roomCode, setRoomCode] = useLocalStorage("roomCode");
 
-  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const hostRoom = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const username = formData.get("username") as string;
-    const response = await fetch(testAPI, {
+    const response = await fetch(api, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +51,7 @@ export default function Page() {
         </CardAction>
       </CardHeader>
       <CardContent>
-        <form onSubmit={onSubmit} className="flex flex-col gap-2">
+        <form onSubmit={hostRoom} className="flex flex-col gap-2">
           <Label htmlFor="username">Your Name</Label>
           <Input name="username" type="text" placeholder="John Doe" />
           <Button name="create" type="submit" className="cursor-pointer">
