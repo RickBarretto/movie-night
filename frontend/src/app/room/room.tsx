@@ -72,6 +72,15 @@ export function RoomPage() {
   React.useEffect(() => {
     setHydrated(true);
   }, []);
+  
+  React.useEffect(() => {  
+    const id = setInterval(() => {
+      refresh();
+    }, 2000);
+  
+    return () => clearInterval(id);
+  }, [refresh]);
+
 
   React.useEffect(() => {
     const down = (event: KeyboardEvent) => {
