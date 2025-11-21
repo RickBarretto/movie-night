@@ -56,6 +56,7 @@ export function roomsRoutes(fastify: FastifyInstance) {
             properties: {
               status: { type: "string" },
               room: { type: "string" },
+              host: { type: "string" },
               movies: {
                 type: "array",
                 items: {
@@ -97,6 +98,7 @@ export function roomsRoutes(fastify: FastifyInstance) {
       return reply.send({
         status: "ok",
         room: found.code,
+        host: found.host,
         movies: found.movies,
         state: found.state,
         winner: found.winner,
