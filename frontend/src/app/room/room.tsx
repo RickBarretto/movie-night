@@ -162,38 +162,13 @@ export function RoomPage() {
           <CardTitle className="inline-flex items-center gap-2">
             <LucideList /> Suggestions
           </CardTitle>
-
           <CardAction>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button><LucidePlus/> Suggest New</Button>
-              </DialogTrigger>
-              <DialogContent>
-                <form onSubmit={suggest}>
-                  <DialogHeader>
-                    <DialogTitle>Suggest a Movie</DialogTitle>
-                    <DialogDescription>
-                      Enter the movie you want to suggest.
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="grid grid-cols-4 gap-4 py-4">
-                    <Label htmlFor="title">Title</Label>
-                    <Input id="title" name="title" className="col-span-3" placeholder="John Wick" required />
-                    <Label htmlFor="year">Year</Label>
-                    <Input id="year" name="year" className="col-span-3" placeholder="2014" type="number" />
-                  </div>
-                  <DialogFooter>
-                    <Button type="submit">Suggest</Button>
-                  </DialogFooter>
-                </form>
-              </DialogContent>
-            </Dialog>
+            <SuggestAction onSubmit={suggest} />
           </CardAction>
-
         </CardHeader>
         <CardContent className="flex flex-col gap-2">
           {!room && (<LoadingSuggestions/>)}
-          {room && room.winner && (<Winner winner={ room.winner }/>)}
+          {room && (Object.keys(room.winner).length > 0) && (<Winner winner={ room.winner }/>)}
           {room && (<Suggestions movies={ room.movies } />)}
         </CardContent>
       </Card>
@@ -216,6 +191,33 @@ export function RoomPage() {
 }
 
 // Internal Components
+ 
+const SuggestAction = ({ onSubmit }) => {
+  <Dialog>
+    <DialogTrigger asChild>
+      <Button><LucidePlus/> Suggest New</Button>
+    </DialogTrigger>
+    <DialogContent>
+      <form onSubmit={onSubmit}>
+        <DialogHeader>
+          <DialogTitle>Suggest a Movie</DialogTitle>
+          <DialogDescription>
+            Enter the movie you want to suggest.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid grid-cols-4 gap-4 py-4">
+          <Label htmlFor="title">Title</Label>
+          <Input id="title" name="title" className="col-span-3" placeholder="John Wick" required />
+          <Label htmlFor="year">Year</Label>
+          <Input id="year" name="year" className="col-span-3" placeholder="2014" type="number" />
+        </div>
+        <DialogFooter>
+          <Button type="submit">Suggest</Button>
+        </DialogFooter>
+      </form>
+    </DialogContent>
+  </Dialog>
+}
  
 const LoadingSuggestions = () => {
   return (
