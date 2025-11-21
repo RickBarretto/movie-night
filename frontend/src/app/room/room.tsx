@@ -161,9 +161,18 @@ export function RoomPage() {
           </Button>
           <Badge variant="outline">{userRole.toUpperCase()}</Badge>
           {(!isHost || hasWinner(room)) && 
-            <Button variant="outline" onClick={() => router.push("/")}>
-              <LucideLogOut/> Leave
-            </Button>}
+            <Button
+              variant="outline"
+              onClick={() => {
+                localStorage.removeItem("username");
+                localStorage.removeItem("ownerKey");
+                localStorage.removeItem("roomCode");
+                router.push("/");
+              }}
+            >
+              <LucideLogOut /> Leave
+            </Button>
+        }
         </CardContent>
         {isHost && (
           <CardFooter>
