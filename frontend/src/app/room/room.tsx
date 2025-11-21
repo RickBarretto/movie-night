@@ -103,6 +103,18 @@ export function RoomPage() {
     console.log("[SUGGESTED]", data);
     await refresh();
   };
+  
+  const draw = async () => {
+    const response = await fetch(`${baseURL}/rooms/${roomCode}/draw`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, key: ownerKey }),
+    });
+
+    const data = await response.json();
+    console.log("[SUGGESTED]", data);
+    await refresh();
+  };
 
 
   return (
@@ -203,7 +215,7 @@ export function RoomPage() {
       >
         <CommandList>
           <CommandGroup heading="Host Commands">
-            <CommandItem>
+            <CommandItem onSelect={draw}>
               <LucideFlag className="mr-2 h-4 w-4" />
               Finish &amp; Draw Winner
             </CommandItem>
