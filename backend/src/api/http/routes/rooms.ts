@@ -32,7 +32,7 @@ export function roomsRoutes(fastify: FastifyInstance) {
     async (request, reply) => {
       const created: Room = await rooms.hostNew(request.body.username);
 
-      return reply.send({
+      return reply.status(201).send({
         status: "created",
         room: created.code,
         ownerKey: created.owner,
