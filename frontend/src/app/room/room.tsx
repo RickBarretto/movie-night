@@ -192,20 +192,9 @@ export function RoomPage() {
 
         </CardHeader>
         <CardContent className="flex flex-col gap-2">
-          {!room && (
-            <>
-              <Skeleton className="h-16 w-full" />
-              <Skeleton className="h-16 w-full" />
-              <Skeleton className="h-16 w-full" />
-            </>
-          )}
-          {room && room.movies.length === 0 && (
-            <p className="text-sm text-muted-foreground">No suggestions yet.</p>
-          )}
-          {room &&
-            room.movies.map((movie) => (
-              <MovieCard key={movie.id} title={movie.title} year={movie.year} by={movie.by}/>
-          ))}
+          {!room && (<LoadingSuggestions/>)}
+          {room && room.winner && (<Winner winner={ room.winner }/>)}
+          {room && (<Suggestions movies={ room.movies } />)}
         </CardContent>
       </Card>
 
@@ -227,6 +216,35 @@ export function RoomPage() {
 }
 
 // Internal Components
+ 
+const LoadingSuggestions = () => {
+  return (
+    <div className="flex flex-col gap-2">
+      <Skeleton className="h-16 w-full" />
+      <Skeleton className="h-16 w-full" />
+      <Skeleton className="h-16 w-full" />
+    </div>
+  );
+}
+
+const Winner = ({ winner }: { winner: Movie }) => { 
+    return (
+      <div className="flex flex-col gap-2">
+        <p className="text-lg font-bold">Winner:</p>
+        <MovieCard title={winner.title} year={winner.year} by={winner.by} />
+      </div>
+    )
+}
+
+const Suggestions = ({movies}: {movies: Movie[]}) => {
+  if (!movies.length) {
+    return <p className="text-sm text-muted-foreground">No suggestions yet.</p>;
+  }
+
+  return movies.map((movie) => (
+    <MovieCard key={movie.id} title={movie.title} year={movie.year} by={movie.by}/>
+  ));
+}
 
 const MovieCard = ({ title, year, by }) => {
   return (
