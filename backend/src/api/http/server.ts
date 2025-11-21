@@ -5,7 +5,9 @@ import swaggerUi from "@fastify/swagger-ui";
 import fastify from "fastify";
 import { config } from "../../config.js";
 import { bullBoardServer } from "../../infrastructure/bullBoard.js";
+
 import { healthRoutes } from "./routes/healthRoutes.js";
+import { roomsRoutes } from "./routes/rooms.ts"
 
 export const makeServer = async () => {
   const server = fastify({ logger: config.http.logger[config.env] });
@@ -43,10 +45,11 @@ export const makeServer = async () => {
   });
 
   server.register(healthRoutes);
+  server.register(roomsRoutes);
 
-  bullBoardServer.listen(3001, () => {
-    console.log("BullMQ UI running http://localhost:3001/admin/queues");
-  });
+  // bullBoardServer.listen(3001, () => {
+  //   console.log("BullMQ UI running http://localhost:3001/admin/queues");
+  // });
 
   return server;
 };

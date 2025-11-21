@@ -11,9 +11,8 @@ export function Rooms(): Repository {
   const rooms = new Map<RoomCode, Room>()
 
   const hostNew = async (hoster: Username): Promise<Room> => {
-    const code: RoomCode = newCode()
-    const room = new Room(code, hoster)
-    rooms.set(code, room)
+    const room = new Room(hoster)
+    rooms.set(room.code, room)
     return room
   }
 

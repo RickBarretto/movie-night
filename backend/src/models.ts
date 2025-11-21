@@ -1,4 +1,5 @@
 
+export type Owner = string
 export type RoomCode = string
 export type RoomState = 'open' | 'closed'
 export type RoomData = {
@@ -17,11 +18,12 @@ export type Username = string
 export type MovieSuggestion = {
   id: MovieID
   title: Title
-  year: Year
+  year: Year | null
   by: Username
 }
 
 export const newId = (): string => Math.random().toString(36).substring(2, 15)
+export const newOwner: () => string = (): Owner => "owner-" + newId()
 export const newCode = (): RoomCode => "room-" + newId()
 export const newMovieID = (): MovieID => "movie-" + newId()
 
@@ -30,17 +32,31 @@ export function choose<T>(xs: T[]): T {
 }
 
 export class Room {
+  readonly code: RoomCode
 
-  constructor(
-    readonly host: Username = "Anonymous",
-    readonly code: RoomCode = newCode(),
-    readonly movies: MovieSuggestion[] = [],
-    private _state: RoomState = 'open',
-    private _winner: MovieSuggestion | null = null
-  ) { }
+  readonly host: Username
+  readonly owner: string
+
+  readonly movies: MovieSuggestion[]
+  private _state: RoomState
+  private _winner: MovieSuggestion | null
+
+  constructor(host: Username) {
+    this.code = newCode()
+    this.owner = newOwner()
+    this.movies = []
+    this._state = 'open'
+    this._winner = null
+
+    this.host = host
+  }
   
   get state(): RoomState {
     return this._state
+  }
+  
+  get winner(): MovieSuggestion | null {
+    return this._winner
   }
   
   isOpen(): boolean {
@@ -51,18 +67,12 @@ export class Room {
     return this._state === 'closed'
   }
   
+  isHost(username: Username, key: Owner): boolean {
+    return this.host === username && this.owner === key
+  }
+  
   suggested(): MovieSuggestion[] {
     return this.movies.map(movie => movie)
-  }
-
-  get asObject(): RoomData {
-    return {
-      host: this.host,
-      code: this.code,
-      movies: this.movies,
-      state: this._state,
-      winner: this._winner
-    }
   }
 
   suggestMovie(movie: MovieSuggestion) {
