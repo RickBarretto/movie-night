@@ -1,43 +1,48 @@
+"use client"
+
 import React from "react";
 
-import { useHost, useUsername } from "@/hooks/useUser";
-import { useRoom } from "@/hooks/useRoom";
-
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
+    Card,
+    CardAction,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
 } from "@/components/ui/card";
 import {
-  LucideContact,
-  LucideFilm,
-  LucideFlag,
-  LucideHash,
-  LucideList,
-  LucideLockKeyhole,
-  LucideLockKeyholeOpen,
-  LucidePlus,
-  LucideUserRoundCheck,
-  LucideUserRoundPlus,
-} from "lucide-react";
-import { CopyButton } from "@/components/ui/shadcn-io/copy-button";
-import { Kbd, KbdGroup } from "@/components/ui/kbd";
-import {
-  CommandDialog,
-  CommandGroup,
-  CommandItem,
-  CommandList,
+    CommandDialog,
+    CommandGroup,
+    CommandItem,
+    CommandList,
 } from "@/components/ui/command";
-import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger 
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { Kbd, KbdGroup } from "@/components/ui/kbd";
 import { Label } from "@/components/ui/label";
+import { CopyButton } from "@/components/ui/shadcn-io/copy-button";
+import { Skeleton } from "@/components/ui/skeleton";
+import {
+    LucideContact,
+    LucideFilm,
+    LucideFlag,
+    LucideList,
+    LucideLockKeyhole,
+    LucideLockKeyholeOpen,
+    LucidePlus,
+    LucideUserRoundCheck
+} from "lucide-react";
 
 
 export default function RoomPage() {
@@ -67,7 +72,7 @@ export default function RoomPage() {
             <Badge>
               {
                (room.status == "open")? <LucideLockKeyholeOpen/> : <LucideLockKeyhole/>
-              } 
+              }
               {room.status.toUpperCase()}
             </Badge>
             <div className="inline-flex items-center gap-2 font-mono text-sm">
