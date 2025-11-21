@@ -6,7 +6,7 @@ export const setupRouteTest = async () => {
   const server = await makeServer();
   const database = makeDatabase();
 
-  await database.connect({ log: false });
+  // await database.connect({ log: false });
 
   return {
     server,

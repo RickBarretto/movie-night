@@ -4,7 +4,7 @@ import { makeDatabase } from "../../infrastructure/database/database.js";
 export const setupIntegrationTest = async () => {
   const database = makeDatabase();
 
-  await database.connect({ log: false });
+  // await database.connect({ log: false });
 
   return {
     cleanDatabase: () => clean(database.connection),
