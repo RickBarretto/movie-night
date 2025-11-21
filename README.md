@@ -27,7 +27,7 @@ Add persistency, cache, and clean architecture.
 
 ### Project
 
-- [ ] Login/Signup feature
+- [ ] Login/Signup feature (via JWT)
 - [ ] Host allowed to refuse movies
 - [ ] Room Permalink
 
