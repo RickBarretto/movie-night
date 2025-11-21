@@ -1,6 +1,9 @@
-"use client"
+"use client";
+
 
 import React from "react";
+import { useRouter } from "next/navigation";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -26,7 +29,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger 
+  DialogTrigger
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
@@ -46,8 +49,22 @@ import {
 
 
 export default function RoomPage() {
-  const { user, room } = useSession();
+  const baseURL = "http://localhost:3000"
+  
+  const [hydrated, setHydrated] = React.useState(false);
+
+  const [username, setUsername] = useLocalStorage("username", "");
+  const [ownerKey, setOwnerKey] = useLocalStorage("ownerKey", "");
+  const [roomCode, setRoomCode] = useLocalStorage("roomCode", "");
+
+  const { room, refresh, isHost, isOpen, userRole } =
+    useRoom(baseURL, { username, ownerKey, room: roomCode });
+
   const [commandOpen, setCommandOpen] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   React.useEffect(() => {
     const down = (event: KeyboardEvent) => {
@@ -60,6 +77,10 @@ export default function RoomPage() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
+  if (!hydrated) {
+    return <div className="p-16">Loading…</div>;
+  }
+
   return (
     <div className="flex flex-col flex-center gap-4 max-w-4xl mx-auto p-16">
       <Card>
@@ -69,25 +90,25 @@ export default function RoomPage() {
             Night Movie Room
           </CardTitle>
           <CardAction className="flex align-middle gap-4">
-            <Badge>
-              {
-               (room.status == "open")? <LucideLockKeyholeOpen/> : <LucideLockKeyhole/>
-              }
-              {room.status.toUpperCase()}
-            </Badge>
+            {room && (
+              <Badge>
+                {isOpen ? <LucideLockKeyholeOpen /> : <LucideLockKeyhole />}
+                {room.status.toUpperCase()}
+              </Badge>
+            )}
             <div className="inline-flex items-center gap-2 font-mono text-sm">
-              <span>{room.code}</span>
-              <CopyButton content={room.code} />
+              <span>{roomCode}</span>
+              <CopyButton content={roomCode} />
             </div>
           </CardAction>
         </CardHeader>
         <CardContent className="flex gap-2">
           <Button>
-            <LucideContact /> {user.name}
+            <LucideContact /> {username}
           </Button>
-          <Badge variant="outline">{user.role.toUpperCase()}</Badge>
+          <Badge variant="outline">{userRole.toUpperCase()}</Badge>
         </CardContent>
-        {user.role === "host" && (
+        {isHost && (
           <CardFooter>
             <p>
               Press&nbsp;
@@ -133,15 +154,25 @@ export default function RoomPage() {
           </CardAction>
         </CardHeader>
         <CardContent className="flex flex-col gap-2">
-          <MovieCard title="John Wick" year={2014} by="Jane Doe" />
-          <Skeleton className="h-16 w-full" />
-          <Skeleton className="h-16 w-full" />
-          <Skeleton className="h-16 w-full" />
+          {!room && (
+            <>
+              <Skeleton className="h-16 w-full" />
+              <Skeleton className="h-16 w-full" />
+              <Skeleton className="h-16 w-full" />
+            </>
+          )}
+          {room && room.movies.length === 0 && (
+            <p className="text-sm text-muted-foreground">No suggestions yet.</p>
+          )}
+          {room &&
+            room.movies.map((movie) => (
+              <MovieCard key={movie.id} title={movie.title} year={movie.year} by={movie.by}/>
+          ))}
         </CardContent>
       </Card>
 
       <CommandDialog
-        open={user.role === "host" && commandOpen}
+        open={isHost && commandOpen}
         onOpenChange={setCommandOpen}
       >
         <CommandList>
@@ -176,30 +207,51 @@ const MovieCard = ({ title, year, by }) => {
 
 // Internal Hooks
 
-interface User {
-  name: string;
-  role: "host" | "guest";
+interface Movie {
+  id: string;
+  title: string;
+  by: string;
+  year: number | null;
 }
 
 interface Room {
-  code: string;
-  status: "open" | "closed";
+  code: string
+  host: string
+  status: "open" | "closed"
+  movies: Movie[]
+  winner: Movie | null
 }
 
 interface Session {
-  user: User;
-  room: Room;
+  username: string
+  room: string
+  ownerKey: string
 }
 
-function useSession(): Session {
-  return {
-    user: {
-      name: "John Doe",
-      role: "host",
-    },
-    room: {
-      code: "ABC123",
-      status: "open",
-    },
+const useRoom = (api: string, session: Session) => {
+  const [room, setRoom] = React.useState<Room | null>(null);
+
+  const refresh = async () => {
+    const response = await fetch(`${api}/rooms/${session.room}`);
+    const data = await response.json();
+
+    setRoom({
+      code: data.code,
+      host: data.host,
+      status: data.state,
+      movies: data.movies,
+      winner: data.winner,
+    });
   };
-}
+
+  const isHost = room?.host === session.username;
+  const isOpen = room?.status === "open";
+  const userRole = isHost ? "host" : "guest";
+
+  React.useEffect(() => {
+    refresh();
+  }, []);
+
+  return { room, refresh, isHost, isOpen, userRole };
+};
+
