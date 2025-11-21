@@ -4,6 +4,10 @@ Small webapp where friends can decide which movie to watch. This is a PBL projec
 
 Challenge Link: [Imersão42 2025 Fullstack challenge](https://gist.github.com/talyssonoc/a47b1598955461cf500ad2ea58ab2cc8)
 
+![homepage](homepage.png)
+![room](room.png)
+
+
 ## Design Decisions
 
 ### Challenge
@@ -29,7 +33,7 @@ Add persistency, cache, and clean architecture.
 
 - [ ] Login/Signup feature (via JWT)
 - [ ] Host allowed to refuse movies
-- [ ] Room Permalink
+- [x] Room Permalink
 
 ### Backend
 
