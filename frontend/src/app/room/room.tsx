@@ -150,6 +150,8 @@ export function RoomPage() {
             <LucideContact /> {username}
           </Button>
           <Badge variant="outline">{userRole.toUpperCase()}</Badge>
+          {(!isHost || hasWinner(room)) && 
+            <Button variant="outline" onClick={() => router.push("/")}>Leave</Button>}
         </CardContent>
         {isHost && (
           <CardFooter>
