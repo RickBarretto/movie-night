@@ -1,5 +1,6 @@
 "use client"
 
+import React from 'react';
 import { useRouter } from "next/navigation";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
@@ -41,8 +42,16 @@ export default function JoinPage() {
 
     router.push("/room");
   };
+  
+  React.useEffect(() => {
+    const hash = window.location.hash;
+    if (hash && hash.startsWith("#room-")) {
+      const code = hash.replace("#room-", "");
+      setRoomCode(code);
+    }
+  }, []);
 
-  return (
+  return ( 
     <Card className="w-full max-w-xl mx-auto my-8">
       <CardHeader>
         <CardTitle>Join a Room</CardTitle>
@@ -55,7 +64,7 @@ export default function JoinPage() {
       <CardContent>
         <form onSubmit={joinRoom} className="flex flex-col gap-2">
           <Label htmlFor="roomCode">Room Code</Label>
-          <Input name="roomCode" type="text" placeholder="CODE123" />
+          <Input name="roomCode" type="text" placeholder="CODE123" defaultValue={roomCode} />
           <Label htmlFor="username">Your Name</Label>
           <Input name="username" type="text" placeholder="Jane Doe" />
           <Button name="join" type="submit" className="cursor-pointer">
