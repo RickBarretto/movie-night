@@ -46,8 +46,7 @@ export default function JoinPage() {
   React.useEffect(() => {
     const hash = window.location.hash;
     if (hash && hash.startsWith("#room-")) {
-      const code = hash.replace("#room-", "");
-      setRoomCode(code);
+      setRoomCode(hash);
     }
   }, []);
 
