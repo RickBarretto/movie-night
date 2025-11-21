@@ -160,16 +160,18 @@ export function RoomPage() {
       <Card>
         <CardHeader>
           <CardTitle className="inline-flex items-center gap-2">
-            <LucideList /> Suggestions
+            <LucideList /> {hasWinner(room) ? 'Winner' : 'Suggestions'}
           </CardTitle>
           <CardAction>
-            {room && (Object.keys(room.winner).length == 0) && <SuggestAction onSubmit={suggest} />}
+            {!hasWinner(room) && <SuggestAction onSubmit={suggest} />}
           </CardAction>
         </CardHeader>
         <CardContent className="flex flex-col gap-2">
           {!room && (<LoadingSuggestions/>)}
-          {room && (Object.keys(room.winner).length > 0) && (<Winner winner={ room.winner }/>)}
-          {room && (<Suggestions movies={ room.movies } />)}
+          {hasWinner(room)? 
+            (room && <MovieCard title={room.winner.title} year={room.winner.year} by={room.winner.by} />) 
+            : (room && <Suggestions movies={ room.movies } />)
+          }
         </CardContent>
       </Card>
 
@@ -231,15 +233,6 @@ const LoadingSuggestions = () => {
   );
 }
 
-const Winner = ({ winner }: { winner: Movie }) => { 
-    return (
-      <div className="flex flex-col gap-2">
-        <p className="text-lg font-bold">Winner:</p>
-        <MovieCard title={winner.title} year={winner.year} by={winner.by} />
-      </div>
-    )
-}
-
 const Suggestions = ({movies}: {movies: Movie[]}) => {
   if (!movies.length) {
     return <p className="text-sm text-muted-foreground">No suggestions yet.</p>;
@@ -266,6 +259,11 @@ const MovieCard = ({ title, year, by }) => {
 
 
 // Internal Hooks
+
+const hasWinner = (room: Room | null) => {
+  return room && Object.keys(room.winner).length > 0;
+}
+
 
 interface Movie {
   id: string;
