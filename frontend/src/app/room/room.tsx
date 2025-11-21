@@ -163,7 +163,7 @@ export function RoomPage() {
             <LucideList /> Suggestions
           </CardTitle>
           <CardAction>
-            <SuggestAction onSubmit={suggest} />
+            {room && (Object.keys(room.winner).length == 0) && <SuggestAction onSubmit={suggest} />}
           </CardAction>
         </CardHeader>
         <CardContent className="flex flex-col gap-2">
@@ -193,30 +193,32 @@ export function RoomPage() {
 // Internal Components
  
 const SuggestAction = ({ onSubmit }) => {
-  <Dialog>
-    <DialogTrigger asChild>
-      <Button><LucidePlus/> Suggest New</Button>
-    </DialogTrigger>
-    <DialogContent>
-      <form onSubmit={onSubmit}>
-        <DialogHeader>
-          <DialogTitle>Suggest a Movie</DialogTitle>
-          <DialogDescription>
-            Enter the movie you want to suggest.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid grid-cols-4 gap-4 py-4">
-          <Label htmlFor="title">Title</Label>
-          <Input id="title" name="title" className="col-span-3" placeholder="John Wick" required />
-          <Label htmlFor="year">Year</Label>
-          <Input id="year" name="year" className="col-span-3" placeholder="2014" type="number" />
-        </div>
-        <DialogFooter>
-          <Button type="submit">Suggest</Button>
-        </DialogFooter>
-      </form>
-    </DialogContent>
-  </Dialog>
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button><LucidePlus/> Suggest New</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <form onSubmit={onSubmit}>
+          <DialogHeader>
+            <DialogTitle>Suggest a Movie</DialogTitle>
+            <DialogDescription>
+              Enter the movie you want to suggest.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid grid-cols-4 gap-4 py-4">
+            <Label htmlFor="title">Title</Label>
+            <Input id="title" name="title" className="col-span-3" placeholder="John Wick" required />
+            <Label htmlFor="year">Year</Label>
+            <Input id="year" name="year" className="col-span-3" placeholder="2014" type="number" />
+          </div>
+          <DialogFooter>
+            <Button type="submit">Suggest</Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  )
 }
  
 const LoadingSuggestions = () => {
