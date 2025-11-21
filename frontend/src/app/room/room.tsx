@@ -49,6 +49,7 @@ import {
 
 
 export function RoomPage() {
+  const appURL = "http://localhost:8080"
   const baseURL = "http://localhost:3000"
   
   const router = useRouter();
@@ -151,7 +152,7 @@ export function RoomPage() {
             )}
             <div className="inline-flex items-center gap-2 font-mono text-sm">
               <span>{roomCode}</span>
-              <CopyButton content={roomCode} />
+              <CopyButton content={`${appURL}/join#${roomCode}`} />
             </div>
           </CardAction>
         </CardHeader>
