@@ -50,6 +50,7 @@ import {
 export function RoomPage() {
   const baseURL = "http://localhost:3000"
   
+  const router = useRouter();
   const [hydrated, setHydrated] = React.useState(false);
 
   const [username, setUsername] = useLocalStorage("username", "");
@@ -60,6 +61,12 @@ export function RoomPage() {
     useRoom(baseURL, { username, ownerKey, room: roomCode });
 
   const [commandOpen, setCommandOpen] = React.useState<boolean>(false);
+  
+  React.useEffect(() => {
+    if (!username || !roomCode) {
+      router.push("/");
+    }
+  }, [])
 
   React.useEffect(() => {
     setHydrated(true);
