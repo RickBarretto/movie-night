@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { LucideChevronLeft } from "lucide-react";
 
 export default function JoinPage() {
   const baseURL = "http://localhost:3000"
@@ -47,7 +48,7 @@ export default function JoinPage() {
         <CardTitle>Join a Room</CardTitle>
         <CardAction>
           <Link className="cursor-pointer" href="/">
-            <Button className="cursor-pointer">&larr; &nbsp; Back</Button>
+            <Button className="cursor-pointer"><LucideChevronLeft/> Back</Button>
           </Link>
         </CardAction>
       </CardHeader>
